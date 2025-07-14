@@ -5,8 +5,6 @@ services:
             dockerfile: Dockerfile
         ports:
             - "9191:8000"
-        volumes:
-            - ./static:/app/static
         environment:
             - HF_HOME=/app/cache
         restart: always

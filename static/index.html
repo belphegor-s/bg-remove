@@ -9,11 +9,23 @@
     <body class="bg-gray-900 flex items-center justify-center min-h-screen p-6">
         <div class="bg-gray-800 p-6 rounded-md shadow-lg w-full max-w-lg text-white">
             <h1 class="text-2xl mb-4 font-semibold">Background Removal</h1>
-            <input id="upload" type="file" accept="image/*" class="mb-4 w-full text-white" />
-            <button id="btn" class="bg-blue-600 px-4 py-2 rounded-md hover:bg-blue-700 disabled:opacity-50 w-full" disabled>Remove Background</button>
-            <div id="result" class="mt-4">
-                <img id="outputImg" class="mx-auto rounded shadow-lg hidden max-w-full mb-4" />
-                <button id="downloadBtn" class="bg-green-600 px-4 py-2 mt-2 w-full rounded-md hover:bg-green-700 text-white hidden">Download Image</button>
+
+            <input id="upload" type="file" accept="image/*" class="mb-2 w-full text-white border border-gray-600 rounded-md p-2 shadow-sm" />
+            <p id="fileInfo" class="text-sm text-gray-300 mb-2 hidden"></p>
+
+            <div id="preview" class="mb-4 hidden">
+                <img id="originalImg" class="mx-auto rounded shadow max-w-full mb-2" />
+            </div>
+
+            <button id="btn" class="bg-blue-600 px-4 py-2 rounded-md hover:bg-blue-700 disabled:opacity-50 w-full mb-2" disabled>Remove Background</button>
+
+            <div id="result" class="mt-4 hidden">
+                <h2 class="text-lg font-semibold mb-2">Background Removed:</h2>
+                <img id="outputImg" class="mx-auto rounded shadow max-w-full mb-4" />
+
+                <button id="downloadBtn" class="bg-green-600 px-4 py-2 w-full rounded-md hover:bg-green-700 text-white mb-2">Download Image</button>
+
+                <button id="resetBtn" class="bg-gray-600 px-4 py-2 w-full rounded-md hover:bg-gray-700 text-white">Upload Another Image</button>
             </div>
         </div>
         <script src="/static/script.js"></script>
