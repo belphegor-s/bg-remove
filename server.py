@@ -1,6 +1,6 @@
 import io
 import os
-from fastapi import FastAPI, File, UploadFile, HTTPException
+from fastapi import FastAPI, File, UploadFile, HTTPException, Request
 from fastapi.responses import StreamingResponse, HTMLResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from PIL import Image
@@ -16,8 +16,14 @@ rm_pipeline = pipeline("image-segmentation", model="briaai/RMBG-1.4", trust_remo
 print("Model loaded.")
 
 @app.get("/", response_class=HTMLResponse)
-async def index():
-    return FileResponse("static/index.html")
+async def index(request: Request):
+    root_path = request.scope.get("root_path", "")
+    with open("static/index.html", "r", encoding="utf-8") as f:
+        html = f.read()
+
+    html = html.replace('src="/static/', f'src="{root_path}/static/')
+    html = html.replace('href="/static/', f'href="{root_path}/static/')
+    return HTMLResponse(content=html)
 
 @app.post("/remove-bg")
 async def remove_bg(file: UploadFile = File(...)):
