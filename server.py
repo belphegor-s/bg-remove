@@ -54,5 +54,3 @@ async def remove_bg(file: UploadFile = File(...)):
         print(f"Error processing image:", e)
         raise HTTPException(status_code=500, detail=f"Processing failed: {str(e)}")
     
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
